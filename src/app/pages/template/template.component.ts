@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-template',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor() { }
+  usuario = {
+    nombre: 'ruben',
+    apellido: 'vazquez',
+    email: 'ruvaz@mail.com'
+  };
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  guardar(forma: NgForm) {
+    if (forma.invalid) {
+
+      Object.values(forma.controls).forEach(control => {
+        control.markAsTouched();
+      });
+
+      return;
+
+    } else {
+    //  console.log(forma.value);
+    }
   }
 
 }
