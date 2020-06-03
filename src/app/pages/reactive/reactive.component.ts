@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -33,13 +33,28 @@ export class ReactiveComponent implements OnInit {
       direccion: this.fb.group({
         distrito: ['', Validators.required],
         ciudad: ['', Validators.required],
-      })
+      }),
+      pasatiempos: this.fb.array([])
     });
 
   }
 
+  get pasatiempos() {
+    return this.forma.get('pasatiempos') as FormArray;
+  }
+
+  agregarPasatiempo() {
+    console.log('se agrego input');
+    this.pasatiempos.push(this.fb.control(''));
+  }
+
+  borrarPasatiempo(i: number) {
+
+    this.pasatiempos.removeAt(i);
+  }
+
   cargarDataAlFormulario() {
-    this.forma.setValue({
+    this.forma.reset({
         nombre: 'Juan ',
         apellido: 'Peres',
         correo: 'correo@gmail.com',
@@ -49,6 +64,8 @@ export class ReactiveComponent implements OnInit {
         }
       }
     );
+
+    ['Comer', 'Dormir'].forEach(valor => this.pasatiempos.push(this.fb.control(valor)));
 
 
   }
@@ -74,6 +91,24 @@ export class ReactiveComponent implements OnInit {
       console.log('Guardando...');
       console.log(this.forma.value);
     }
+
+
+    // posteo de informacion + reset del formulario.
+    // borra todo el estdo del formulario
+    // this.forma.reset({
+    //   nombre:''
+    // });
+    this.forma.reset({
+        nombre: 'Juan ',
+        apellido: 'Peres',
+        correo: 'correo@gmail.com'
+        // direccion: {
+        //   distrito: 'Otaho',
+        //   ciudad: 'Otawa'
+        // }
+      }
+    );
+
   }
 
   // getter para procesar informacion  no recibe parametros
