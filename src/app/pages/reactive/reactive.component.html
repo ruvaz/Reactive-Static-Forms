@@ -50,6 +50,36 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Contraseña</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             formControlName="pass1"
+             placeholder="Contraseña 1"
+             [class.is-invalid]="pass1NoValido"
+      >
+
+<!--      <small *ngIf="correoNoValido"-->
+<!--             class="form-text text-danger">Ingrese correo electrónico valido</small>-->
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Verificar Contraseña</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             formControlName="pass2"
+             placeholder="Contraseña 2"
+             [class.is-invalid]="pass2NoValido"
+      >
+      <!--      <small *ngIf="correoNoValido"-->
+      <!--             class="form-text text-danger">Ingrese correo electrónico valido</small>-->
+    </div>
+  </div>
+
 
   <div class="form-group row" formGroupName="direccion">
     <label class="col-2 col-form-label">Nombre</label>
